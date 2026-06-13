@@ -1,0 +1,140 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=VT323&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+  --color-bg: #030502;
+  --color-panel: #071007;
+  --color-lime: #b8ff4d;
+  --color-green: #42ff6a;
+  --color-text: #f0f5e8;
+  --color-muted: #8fa183;
+  --color-pink: #ff8fbc;
+  --color-terminal-black: var(--color-bg);
+  --color-terminal-green: var(--color-green);
+  --color-terminal-lime: var(--color-lime);
+  --color-terminal-white: var(--color-text);
+  --color-terminal-muted: var(--color-muted);
+  --grid-line: rgb(184 255 77 / 0.055);
+  --scanline: rgb(255 255 255 / 0.035);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  background: var(--color-bg);
+}
+
+body {
+  width: 100%;
+  max-width: 100%;
+  min-width: 320px;
+  min-height: 100dvh;
+  margin: 0;
+  overflow-x: hidden;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    'Liberation Mono', 'Courier New', monospace;
+  -webkit-font-smoothing: antialiased;
+  overflow-wrap: break-word;
+  text-rendering: geometricPrecision;
+}
+
+#root {
+  width: 100%;
+  max-width: 100%;
+  min-height: 100dvh;
+  overflow-x: hidden;
+}
+
+img,
+video,
+canvas,
+svg {
+  max-width: 100%;
+}
+
+.app-shell {
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+  background:
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px),
+    radial-gradient(circle at 50% 0%, rgb(66 255 106 / 0.08), transparent 32rem),
+    var(--color-bg);
+  background-size: 22px 22px, 22px 22px, auto, auto;
+}
+
+.terminal-feed {
+  overflow-x: hidden;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  overscroll-behavior: contain;
+}
+
+.terminal-feed::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.app-shell::before,
+.app-shell::after {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  content: '';
+}
+
+.app-shell::before {
+  z-index: 1;
+  background: repeating-linear-gradient(
+    180deg,
+    transparent 0,
+    transparent 3px,
+    var(--scanline) 4px
+  );
+  mix-blend-mode: screen;
+  opacity: 0.36;
+}
+
+.app-shell::after {
+  z-index: 2;
+  border: 1px solid rgb(184 255 77 / 0.08);
+  box-shadow: inset 0 0 90px rgb(0 0 0 / 0.72);
+}
+
+button {
+  max-width: 100%;
+  border-radius: 0;
+  font: inherit;
+}
+
+input,
+textarea,
+select {
+  max-width: 100%;
+}
+
+button:active {
+  transform: translateY(1px);
+}
