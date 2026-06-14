@@ -3,6 +3,7 @@ import originHint2 from "../assets/images/placeholders/origin-hint-2.jpg";
 import originHint3 from "../assets/images/placeholders/origin-hint-3.jpg";
 import originHint4 from "../assets/images/placeholders/origin-hint-4.jpg";
 import nosDoisCoverImage from "../assets/images/placeholders/nos-dois-cover.jpg";
+import nosDoisAudio from "../assets/audio/nos-dois.mp3?url";
 // Preferir vídeos .mp4 H.264/AAC. Arquivos .MOV podem ficar pretos em alguns navegadores.
 import proposalGalleryVideo1901 from "../assets/images/galeriaPedido/IMG_1901.MOV?url";
 import proposalGalleryPhoto1912 from "../assets/images/galeriaPedido/IMG_1912.JPG?url";
@@ -140,11 +141,6 @@ const firstDate = "2025-07-22";
 const firstVisitDate = "2025-07-31";
 const proposalDate = "2025-10-04";
 const firstDateToProposalDays = 74;
-const audioFiles = import.meta.glob("../assets/audio/*.{mp3,MP3,wav,WAV,m4a,M4A,ogg,OGG}", {
-  eager: true,
-  import: "default",
-  query: "?url",
-}) as Record<string, string>;
 // Preferir vídeos .mp4 H.264/AAC. Arquivos .MOV podem ficar pretos em alguns navegadores.
 const memoryBoxMediaFiles = import.meta.glob(
   "../assets/images/{nenoEnena,coisasPequenas,risadas,oQueFica}/*.{jpg,jpeg,png,webp,JPG,JPEG,PNG,WEBP,mp4,webm,mov,MP4,WEBM,MOV}",
@@ -175,15 +171,6 @@ const memoryBoxMedia = {
   risadas: getMemoryMedia("risadas"),
   oQueFicou: getMemoryMedia("oQueFica"),
 };
-const normalizeAssetPath = (path: string) =>
-  path
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .toLocaleLowerCase("pt-BR");
-const nosDoisAudio =
-  Object.entries(audioFiles).find(([path]) => normalizeAssetPath(path).includes("nos dois"))?.[1] ??
-  Object.values(audioFiles)[0];
-
 export const storyData: StoryData = {
   userNameExpected: "Kamila",
   passwordExpected: "041025",
